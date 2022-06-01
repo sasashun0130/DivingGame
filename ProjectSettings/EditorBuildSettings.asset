@@ -9,18 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleStage.unity
     guid: 44fde2ef352dedb4882a4e2633995fa1
   - enabled: 1
-    path: Assets/Scenes/StartStage.unity
+    path: Assets/Scenes/1stStage.unity
     guid: 029d9bb879993e84192989aa78a7df44
+  - enabled: 1
+    path: Assets/Scenes/2ndStage.unity
+    guid: 50eca07f6bdb9c14a90315997530a410
+  - enabled: 1
+    path: Assets/Scenes/3rdStage.unity
+    guid: 43bd4221710251f4c9e7f4b9d50d42b4
+  - enabled: 1
+    path: Assets/Scenes/BStage.unity
+    guid: 89eff92d15d4daf4c99dff62830ac981
+  - enabled: 1
+    path: Assets/Scenes/CStage.unity
+    guid: 8dbde931d94b18048b2b7342a7bcd7ab
   - enabled: 1
     path: Assets/Scenes/ResultStage.unity
     guid: 5d46ecda73323d448bd784870fadf41b
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Underwater Diving/Scenes/title-screen.unity
-    guid: 788546734db1845eca19222274234cb1
-  - enabled: 0
-    path: Assets/Underwater Diving/Scenes/scene-1.unity
-    guid: e08243922417842828467f43d5971f1e
+  - enabled: 1
+    path: Assets/Scenes/GameOverStage.unity
+    guid: c156a28eaf8bf854482e9dcdc8e1f839
   m_configObjects: {}

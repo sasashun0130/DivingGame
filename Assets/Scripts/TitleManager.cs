@@ -24,7 +24,7 @@ public class TitleManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("StartStage");
+            SceneManager.LoadScene("1stStage");
         }
     }
 
