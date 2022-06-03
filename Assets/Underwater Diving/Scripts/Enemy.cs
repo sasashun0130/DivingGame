@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 
 		if(other.tag == "Player" && thePlayer.rushing){
-			Instantiate (death, gameObject.transform.position, gameObject.transform.rotation);
+			//Instantiate (death, gameObject.transform.position, gameObject.transform.rotation);
 			Destroy (gameObject);
 		}
 

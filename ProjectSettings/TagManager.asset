@@ -9,6 +9,8 @@ TagManager:
   - Treasure
   - Stair
   - FalseStair
+  - Enemy
+  - PoisonEnemy
   layers:
   - Default
   - TransparentFX

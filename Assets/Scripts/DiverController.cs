@@ -1,48 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DiverController : MonoBehaviour
 {
     public float speed = 1.5f;
+    private float speedMod = 0;
 
     private Rigidbody2D myRigidBody;
     private Animator myAnim;
     public GameObject bubbles;
 
+    public float attacktime = 1.0f;
+    public bool isAttacking = false;//DiverAbilityでも残圧処理の判定に使うからstatic
+
     public static float zanatu = 200.0f;
     public Text ZanatuText;
 
-    public static int power = 1;
+    public Text PoisonText;
+    public bool isPoison;
+    public float poisontimer = 0f;
+    public float poisonlimit = 5f;
+
+    //public static int power = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
-
+        isPoison = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        resetAttackTime();
 
         myAnim.SetFloat("Speed", Mathf.Abs(myRigidBody.velocity.x));
 
-        //残圧を時間経過によって減少させていく.残圧がゼロになったらゲームオーバー
-        zanatu -= 0.8f * Time.deltaTime;
-        ZanatuText.text = "残圧：" + zanatu.ToString("f0");
-
-        if (zanatu < 0.0f)
-        {
-            SceneManager.LoadScene("GameOverStage");
-        }
+        ZanatuManager();
 
     }
 
+
+    //Playerの動きを入力されたボタンによって判定
     void Move()
     {
         if(Input.GetAxisRaw("Horizontal") > 0)
@@ -60,66 +65,90 @@ public class DiverController : MonoBehaviour
         else if(Input.GetAxisRaw("Vertical") < 0){
             myRigidBody.velocity = new Vector3(myRigidBody.velocity.x, -speed, 0);
         }
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            isAttacking = true;
             Instantiate(bubbles, gameObject.transform.position, gameObject.transform.rotation);
+            speedMod = 2f;
             MovePlayer();
         }
-        */
-        
     }
 
     void MovePlayer()
     {
         if(transform.localScale.x == 1)
         {
-            myRigidBody.velocity = new Vector3(speed, myRigidBody.velocity.y, 0);
+            myRigidBody.velocity = new Vector3(speed + speedMod, myRigidBody.velocity.y, 0);
         }
         else
         {
-            myRigidBody.velocity = new Vector3(-speed, myRigidBody.velocity.y, 0);
+            myRigidBody.velocity = new Vector3(-(speed + speedMod), myRigidBody.velocity.y, 0);
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    void resetAttackTime()
     {
-        if (collision.gameObject.tag == "Stair")
+        if (attacktime <= 0)
         {
-            SceneManager.LoadScene("2ndStage");
+            attacktime = 1f;
+            isAttacking = false;
+            speedMod = 0;
         }
-        else if (collision.gameObject.tag == "Stair1")
+        else if (isAttacking)
         {
-            SceneManager.LoadScene("3rdStage");
+            attacktime -= Time.deltaTime;
         }
-        else if (collision.gameObject.tag == "Stair2")
+    }
+
+    //敵判定DiverAbilityで残圧処理
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(isAttacking == false)
         {
-            SceneManager.LoadScene("1stStage");
-        }
-        else if (collision.gameObject.tag == "FalseStair")
-        {
-            int stage = Random.Range(1, 11);
-            if (stage < 7)
+            if (collision.gameObject.tag == "Enemy")
             {
-                //Debug.Log(stage);
-                SceneManager.LoadScene("BStage");
+                zanatu -= 20;
             }
-            else
+            if (collision.gameObject.tag == "PoisonEnemy")
             {
-                //Debug.Log(stage); 
-                SceneManager.LoadScene("CStage");
+                isPoison = true;
             }
         }
-        else if (collision.gameObject.tag == "Treasure")
+        else
         {
-            SceneManager.LoadScene("ResultStage");
+            Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.tag == "FalseTresure")
+    }
+
+    //残圧を時間経過によって減少させていく
+    //残圧がゼロになったらゲームオーバー
+    void ZanatuManager()
+    {
+        if (isPoison == false)
         {
+            zanatu -= 0.8f * Time.deltaTime;
+            ZanatuText.text = "残圧：" + zanatu.ToString("f0");
+        }
+        else
+        {
+            zanatu -= 1.5f * Time.deltaTime;
+            poisontimer += Time.deltaTime;
+            ZanatuText.text = "残圧：" + zanatu.ToString("f0");
+            PoisonText.gameObject.SetActive(true);
+            if (poisontimer > poisonlimit)
+            {
+                poisontimer = 0f;
+                isPoison = false;
+                PoisonText.gameObject.SetActive(false);
+            }
+        }
+
+        if (zanatu < 0.0f){
             SceneManager.LoadScene("GameOverStage");
         }
-
-
-
     }
+
+
+
 }
