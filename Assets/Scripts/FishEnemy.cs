@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**‹›‚Ì“G‚Ì“®‚«‚ğˆ—‚·‚éScript
+ */
+
 public class FishEnemy : MonoBehaviour
 {
     public float speed = 0.3f;
@@ -18,7 +21,7 @@ public class FishEnemy : MonoBehaviour
 
         turnTimer = 0;
         timeTrigger = Random.Range(2, 6);
-        Debug.Log(timeTrigger);
+        //Debug.Log(timeTrigger);
     }
 
     // Update is called once per frame

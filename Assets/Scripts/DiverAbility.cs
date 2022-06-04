@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class DiverAbility : MonoBehaviour
+/**Playerの残圧を処理するScript
+ */
+
+public class DiverAbility: MonoBehaviour
 {
     public static float zanatu = 200.0f;
     public Text ZanatuText;
@@ -30,18 +33,25 @@ public class DiverAbility : MonoBehaviour
         ZanatuManager();
     }
 
-    //敵判定DiverAbilityで残圧処理
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            zanatu -= 20;
-        }
-        if (collision.gameObject.tag == "PoisonEnemy")
-        {
-            isPoison = true;
-        }
-    }
+    ////敵判定DiverAbilityで残圧処理
+    //void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (isAttacking == false)
+    //    {
+    //        if (collision.gameObject.tag == "Enemy")
+    //        {
+    //            zanatu -= 20;
+    //        }
+    //        if (collision.gameObject.tag == "PoisonEnemy")
+    //        {
+    //            isPoison = true;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Destroy(collision.gameObject);
+    //    }
+    //}
 
     //残圧を時間経過によって減少させていく
     //残圧がゼロになったらゲームオーバー

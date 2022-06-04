@@ -11,12 +11,14 @@ public class DiverController : MonoBehaviour
 
     private Rigidbody2D myRigidBody;
     private Animator myAnim;
+    public bool attacked = false;
+    public float attackedtime;
     public GameObject bubbles;
 
     public float attacktime = 1.0f;
-    public bool isAttacking = false;//DiverAbilityÇ≈Ç‡écà≥èàóùÇÃîªíËÇ…égÇ§Ç©ÇÁstatic
+    public bool isAttacking = false;
 
-    public static float zanatu = 200.0f;
+    public float zanatu = 200.0f;
     public Text ZanatuText;
 
     public Text PoisonText;
@@ -32,6 +34,8 @@ public class DiverController : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
         isPoison = false;
+        attacked = false;
+        attackedtime = 1.0f;
     }
 
     // Update is called once per frame
@@ -41,6 +45,7 @@ public class DiverController : MonoBehaviour
         resetAttackTime();
 
         myAnim.SetFloat("Speed", Mathf.Abs(myRigidBody.velocity.x));
+        myAnim.SetBool("attacked",attacked);
 
         ZanatuManager();
 
@@ -102,18 +107,25 @@ public class DiverController : MonoBehaviour
     }
 
     //ìGîªíËDiverAbilityÇ≈écà≥èàóù
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(isAttacking == false)
         {
             if (collision.gameObject.tag == "Enemy")
             {
                 zanatu -= 20;
+                //Debug.Log("Damage");
+                attacked = true;
+                Debug.Log(attacked);
             }
             if (collision.gameObject.tag == "PoisonEnemy")
             {
                 isPoison = true;
+                attacked = true;
+                //Debug.Log("Poison");
+                Debug.Log(attacked);
             }
+            attackedtimer();
         }
         else
         {
@@ -144,11 +156,19 @@ public class DiverController : MonoBehaviour
             }
         }
 
-        if (zanatu < 0.0f){
+        if (zanatu < 0.0f)
+        {
             SceneManager.LoadScene("GameOverStage");
         }
     }
 
+    private void attackedtimer()
+    {
+        attackedtime -= Time.deltaTime;
 
-
+        if(attackedtime < 0)
+        {
+            attacked = false;
+        }
+    }
 }
