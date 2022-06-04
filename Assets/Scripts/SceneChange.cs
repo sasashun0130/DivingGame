@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 /**Player‚ª‰½‚©‚É‚Ô‚Â‚©‚Á‚½‚É‹N‚±‚éˆ—‚ÌScripts
  */
 
-public class Diver : MonoBehaviour
+public class SceneChange: MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

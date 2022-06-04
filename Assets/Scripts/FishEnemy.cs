@@ -49,4 +49,11 @@ public class FishEnemy : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
+
+    //void Destroy()
+    //{
+    //    Destroy(this.gameObject);
+    //    Debug.Log("ŒÄ‚Ño‚µ¬Œ÷");
+    //    //Instantiate();
+    //}
 }

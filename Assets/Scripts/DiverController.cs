@@ -11,9 +11,10 @@ public class DiverController : MonoBehaviour
 
     private Rigidbody2D myRigidBody;
     private Animator myAnim;
-    public bool attacked = false;
-    public float attackedtime;
     public GameObject bubbles;
+    public GameObject death;
+
+    public bool attack;
 
     public float attacktime = 1.0f;
     public bool isAttacking = false;
@@ -34,8 +35,7 @@ public class DiverController : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
         isPoison = false;
-        attacked = false;
-        attackedtime = 1.0f;
+        attack = false;
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class DiverController : MonoBehaviour
         resetAttackTime();
 
         myAnim.SetFloat("Speed", Mathf.Abs(myRigidBody.velocity.x));
-        myAnim.SetBool("attacked",attacked);
+        myAnim.SetBool("attack",attack);
 
         ZanatuManager();
 
@@ -75,7 +75,7 @@ public class DiverController : MonoBehaviour
         {
             isAttacking = true;
             Instantiate(bubbles, gameObject.transform.position, gameObject.transform.rotation);
-            speedMod = 2f;
+            speedMod = 1f;
             MovePlayer();
         }
     }
@@ -111,25 +111,27 @@ public class DiverController : MonoBehaviour
     {
         if(isAttacking == false)
         {
+            attack = true;
+            Invoke("Attack", 0.7f);
             if (collision.gameObject.tag == "Enemy")
             {
                 zanatu -= 20;
-                //Debug.Log("Damage");
-                attacked = true;
-                Debug.Log(attacked);
+                //attack = true;
+                //Invoke("Attack", 0.7f);
+              
             }
             if (collision.gameObject.tag == "PoisonEnemy")
             {
                 isPoison = true;
-                attacked = true;
-                //Debug.Log("Poison");
-                Debug.Log(attacked);
+                //attack = true;
+                //Invoke("Attack", 0.7f);
             }
-            attackedtimer();
         }
         else
         {
+            //enemy.SendMessage("Destroy");
             Destroy(collision.gameObject);
+            Instantiate(death, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
         }
     }
 
@@ -162,13 +164,9 @@ public class DiverController : MonoBehaviour
         }
     }
 
-    private void attackedtimer()
+    void Attack()
     {
-        attackedtime -= Time.deltaTime;
-
-        if(attackedtime < 0)
-        {
-            attacked = false;
-        }
+        attack = false;
+        //Debug.Log("Invoke¬Œ÷");
     }
 }
