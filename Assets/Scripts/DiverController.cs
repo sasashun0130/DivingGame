@@ -55,8 +55,7 @@ public class DiverController : MonoBehaviour
     //Playerの動きを入力されたボタンによって判定
     void Move()
     {
-        if(Input.GetAxisRaw("Horizontal") > 0)
-        {
+        if(Input.GetAxisRaw("Horizontal") > 0){
             transform.localScale = new Vector3(1, 1, 1);
             MovePlayer();
         }
@@ -71,8 +70,7 @@ public class DiverController : MonoBehaviour
             myRigidBody.velocity = new Vector3(myRigidBody.velocity.x, -speed, 0);
         }
         
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        if (Input.GetKeyDown(KeyCode.Space)){
             isAttacking = true;
             Instantiate(bubbles, gameObject.transform.position, gameObject.transform.rotation);
             speedMod = 1f;
@@ -82,26 +80,22 @@ public class DiverController : MonoBehaviour
 
     void MovePlayer()
     {
-        if(transform.localScale.x == 1)
-        {
+        if(transform.localScale.x == 1){
             myRigidBody.velocity = new Vector3(speed + speedMod, myRigidBody.velocity.y, 0);
         }
-        else
-        {
+        else{
             myRigidBody.velocity = new Vector3(-(speed + speedMod), myRigidBody.velocity.y, 0);
         }
     }
 
     void resetAttackTime()
     {
-        if (attacktime <= 0)
-        {
+        if (attacktime <= 0){
             attacktime = 1f;
             isAttacking = false;
             speedMod = 0;
         }
-        else if (isAttacking)
-        {
+        else if (isAttacking){
             attacktime -= Time.deltaTime;
         }
     }
@@ -111,25 +105,20 @@ public class DiverController : MonoBehaviour
     {
         if(isAttacking == false)
         {
-            attack = true;
-            Invoke("Attack", 0.7f);
-            if (collision.gameObject.tag == "Enemy")
-            {
+            if (collision.gameObject.tag == "Enemy"){
                 zanatu -= 20;
-                //attack = true;
-                //Invoke("Attack", 0.7f);
+                attack = true;
+                Invoke("Attack", 0.7f);
               
             }
-            if (collision.gameObject.tag == "PoisonEnemy")
-            {
+            if (collision.gameObject.tag == "PoisonEnemy"){
+                zanatu -= 10;
                 isPoison = true;
-                //attack = true;
-                //Invoke("Attack", 0.7f);
+                attack = true;
+                Invoke("Attack", 0.7f);
             }
         }
-        else
-        {
-            //enemy.SendMessage("Destroy");
+        else{
             Destroy(collision.gameObject);
             Instantiate(death, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
         }
@@ -150,23 +139,35 @@ public class DiverController : MonoBehaviour
             poisontimer += Time.deltaTime;
             ZanatuText.text = "残圧：" + zanatu.ToString("f0");
             PoisonText.gameObject.SetActive(true);
-            if (poisontimer > poisonlimit)
-            {
+            if (poisontimer > poisonlimit){
                 poisontimer = 0f;
                 isPoison = false;
                 PoisonText.gameObject.SetActive(false);
             }
         }
 
-        if (zanatu < 0.0f)
-        {
+        if (zanatu < 0.0f){
             SceneManager.LoadScene("GameOverStage");
         }
     }
 
-    void Attack()
-    {
+    void Attack(){
         attack = false;
-        //Debug.Log("Invoke成功");
     }
+
+    void ZanUp(){
+        zanatu += 20;
+    }
+
+    void NotPoison(){
+        isPoison = false;
+        PoisonText.text = "毒から回復した！";
+        Invoke("DeleteText", 1f);
+    }
+
+    void DeleteText()
+    {
+        PoisonText.gameObject.SetActive(false);
+    }
+
 }

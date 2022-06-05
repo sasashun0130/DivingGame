@@ -40,12 +40,10 @@ public class SceneChange: MonoBehaviour
             int stage = Random.Range(1, 11);
             if (stage < 7)
             {
-                //Debug.Log(stage);
                 SceneManager.LoadScene("BStage");
             }
             else
             {
-                //Debug.Log(stage); 
                 SceneManager.LoadScene("CStage");
             }
         }

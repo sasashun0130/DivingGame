@@ -11,6 +11,8 @@ TagManager:
   - FalseStair
   - Enemy
   - PoisonEnemy
+  - kaihuku
+  - zanup
   layers:
   - Default
   - TransparentFX

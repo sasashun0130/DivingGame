@@ -21,7 +21,6 @@ public class FishEnemy : MonoBehaviour
 
         turnTimer = 0;
         timeTrigger = Random.Range(2, 6);
-        //Debug.Log(timeTrigger);
     }
 
     // Update is called once per frame
@@ -30,8 +29,7 @@ public class FishEnemy : MonoBehaviour
         myRigidbody.velocity = new Vector3(myRigidbody.transform.localScale.x * speed, myRigidbody.velocity.y, 0f);
 
         turnTimer += Time.deltaTime;
-        if (turnTimer > timeTrigger)
-        {
+        if (turnTimer > timeTrigger){
             turn();
             turnTimer = 0;
         }
@@ -40,20 +38,12 @@ public class FishEnemy : MonoBehaviour
 
     void turn()
     {
-        if (transform.localScale.x == 1)
-        {
+        if (transform.localScale.x == 1){
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-        else
-        {
+        else{
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
-    //void Destroy()
-    //{
-    //    Destroy(this.gameObject);
-    //    Debug.Log("åƒÇ—èoÇµê¨å˜");
-    //    //Instantiate();
-    //}
 }
