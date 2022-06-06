@@ -251,7 +251,7 @@ MonoBehaviour:
   PoisonText: {fileID: 0}
   isPoison: 0
   poisontimer: 0
-  poisonlimit: 5
+  poisonlimit: 10
 --- !u!114 &8704560450425301680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,3 +276,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb50a92528efea42b2ea7b24f7fd2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemText: {fileID: 0}

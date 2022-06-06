@@ -138,6 +138,7 @@ public class DiverController : MonoBehaviour
             zanatu -= 1.5f * Time.deltaTime;
             poisontimer += Time.deltaTime;
             ZanatuText.text = "残圧：" + zanatu.ToString("f0");
+            PoisonText.text = "！毒感染中！";
             PoisonText.gameObject.SetActive(true);
             if (poisontimer > poisonlimit){
                 poisontimer = 0f;

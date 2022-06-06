@@ -17,7 +17,7 @@ public class ParallaxBackground : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		cameraTransform = Camera.main.transform;
+		//cameraTransform = Camera.main.transform;
 		lastCameraX = cameraTransform.position.x;
 		layers = new Transform[transform.childCount];
 

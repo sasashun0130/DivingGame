@@ -3676,6 +3676,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8704560450091037393, guid: b8f242c0dbfb12743a391ea61e28f213, type: 3}
+      propertyPath: orthographic size
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8704560450425301681, guid: b8f242c0dbfb12743a391ea61e28f213, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3692,21 +3696,17 @@ PrefabInstance:
       propertyPath: ZanatuText
       value: 
       objectReference: {fileID: 1814185606}
-    - target: {fileID: 8704560450425301686, guid: b8f242c0dbfb12743a391ea61e28f213, type: 3}
-      propertyPath: poisonlimit
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8704560450425301687, guid: b8f242c0dbfb12743a391ea61e28f213, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8704560450425301687, guid: b8f242c0dbfb12743a391ea61e28f213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.8
+      value: 2.95
       objectReference: {fileID: 0}
     - target: {fileID: 8704560450425301687, guid: b8f242c0dbfb12743a391ea61e28f213, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 8704560450425301687, guid: b8f242c0dbfb12743a391ea61e28f213, type: 3}
       propertyPath: m_LocalPosition.z
