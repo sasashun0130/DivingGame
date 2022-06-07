@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
 
 /**PlayerÇÃécà≥ÇèàóùÇ∑ÇÈScript
  */
@@ -19,12 +20,20 @@ public class DiverAbility: MonoBehaviour
 
     public static int power = 1;
 
+    public bool Poison = false;
+
     // Start is called before the first frame update
     void Start()
     {
         isPoison = false;
         poisontimer = 0f;
         poisonlimit = 5.0f;
+
+        Debug.Log(Poison);
+
+        Poison = GameObject.Find("PisonVolume").gameObject.GetComponent<PostProcessVolume>().isGlobal;
+        Debug.Log(Poison);
+        Poison = false;
     }
 
     // Update is called once per frame
@@ -68,10 +77,12 @@ public class DiverAbility: MonoBehaviour
             poisontimer += Time.deltaTime;
             ZanatuText.text = "écà≥ÅF" + zanatu.ToString("f0");
             PoisonText.gameObject.SetActive(true);
+            Poison = true;
             if(poisontimer > poisonlimit)
             {
                 poisontimer = 0f;
                 isPoison = false;
+                Poison = false;
                 PoisonText.gameObject.SetActive(false);
             }
         }
