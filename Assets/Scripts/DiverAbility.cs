@@ -39,7 +39,7 @@ public class DiverAbility: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ZanatuManager();
+        //ZanatuManager();
     }
 
     ////敵判定DiverAbilityで残圧処理
@@ -64,32 +64,32 @@ public class DiverAbility: MonoBehaviour
 
     //残圧を時間経過によって減少させていく
     //残圧がゼロになったらゲームオーバー
-    void ZanatuManager()
-    {
-        if (isPoison == false)
-        {
-            zanatu -= 0.8f * Time.deltaTime;
-            ZanatuText.text = "残圧：" + zanatu.ToString("f0");
-        }
-        else
-        {
-            zanatu -= 1.5f * Time.deltaTime;
-            poisontimer += Time.deltaTime;
-            ZanatuText.text = "残圧：" + zanatu.ToString("f0");
-            PoisonText.gameObject.SetActive(true);
-            Poison = true;
-            if(poisontimer > poisonlimit)
-            {
-                poisontimer = 0f;
-                isPoison = false;
-                Poison = false;
-                PoisonText.gameObject.SetActive(false);
-            }
-        }
+    //void ZanatuManager()
+    //{
+    //    if (isPoison == false)
+    //    {
+    //        zanatu -= 0.8f * Time.deltaTime;
+    //        ZanatuText.text = "残圧：" + zanatu.ToString("f0");
+    //    }
+    //    else
+    //    {
+    //        zanatu -= 1.5f * Time.deltaTime;
+    //        poisontimer += Time.deltaTime;
+    //        ZanatuText.text = "残圧：" + zanatu.ToString("f0");
+    //        PoisonText.gameObject.SetActive(true);
+    //        Poison = true;
+    //        if(poisontimer > poisonlimit)
+    //        {
+    //            poisontimer = 0f;
+    //            isPoison = false;
+    //            Poison = false;
+    //            PoisonText.gameObject.SetActive(false);
+    //        }
+    //    }
 
-        if (zanatu < 0.0f){
-            SceneManager.LoadScene("GameOverStage");
-        }
-    }
+    //    if (zanatu < 0.0f){
+    //        SceneManager.LoadScene("GameOverStage");
+    //    }
+    //}
 
 }

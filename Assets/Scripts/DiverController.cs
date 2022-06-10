@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
 
 public class DiverController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class DiverController : MonoBehaviour
     public float poisontimer = 0f;
     public float poisonlimit = 5f;
 
+    public PostProcessVolume effect;
+
     //public static int power = 1;
 
     // Start is called before the first frame update
@@ -36,6 +39,9 @@ public class DiverController : MonoBehaviour
         myAnim = GetComponent<Animator>();
         isPoison = false;
         attack = false;
+
+        effect.isGlobal = false;
+        //Debug.Log(effect.isGlobal);
     }
 
     // Update is called once per frame
@@ -115,8 +121,11 @@ public class DiverController : MonoBehaviour
                 zanatu -= 10;
                 isPoison = true;
                 attack = true;
+                effect.isGlobal = true;
+                //Debug.Log("感染エフェクト作動");
                 Invoke("Attack", 0.7f);
             }
+            
         }
         else{
             Destroy(collision.gameObject);
@@ -143,6 +152,8 @@ public class DiverController : MonoBehaviour
             if (poisontimer > poisonlimit){
                 poisontimer = 0f;
                 isPoison = false;
+                effect.isGlobal = false;
+                Debug.Log("感染エフェクト終了");
                 PoisonText.gameObject.SetActive(false);
             }
         }
@@ -162,6 +173,7 @@ public class DiverController : MonoBehaviour
 
     void NotPoison(){
         isPoison = false;
+        effect.isGlobal = false;
         PoisonText.text = "毒から回復した！";
         Invoke("DeleteText", 1f);
     }

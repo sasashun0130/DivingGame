@@ -21,17 +21,14 @@ public class ItemManager : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "zanup")
-        {
+        if(collision.gameObject.tag == "zanup"){
             SendMessage("ZanUp");
             Destroy(collision.gameObject);
             ItemText.text = "écà≥Ç™20âÒïúÇµÇΩÅI";
             ItemText.gameObject.SetActive(true);
             Invoke("DeleteText", 1f);
-
         }
-        if(collision.gameObject.tag == "kaihuku")
-        {
+        if(collision.gameObject.tag == "kaihuku"){
             SendMessage("NotPoison");
             Destroy(collision.gameObject);
         }
