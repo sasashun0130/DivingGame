@@ -797,7 +797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &716294645
 Transform:
   m_ObjectHideFlags: 0
@@ -825,18 +825,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.13651848}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.27, y: 1.65}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.78, y: 0.87}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.273037}
   m_EdgeRadius: 0
 --- !u!212 &716294647
 SpriteRenderer:
@@ -878,15 +878,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2f4ed4ec0bbe72047a6b5a4a41c0f292, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.78, y: 0.87}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &721744005
@@ -3047,11 +3047,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4044992373892285223, guid: d7161d5054373fd4da87f2b5fce6325f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -420
+      value: -345
       objectReference: {fileID: 0}
     - target: {fileID: 4044992373892285223, guid: d7161d5054373fd4da87f2b5fce6325f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 275
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 4044992373892285223, guid: d7161d5054373fd4da87f2b5fce6325f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3656,11 +3656,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8065158428297582868, guid: cc961d5a75f39e14eabdfb5f1435d53f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -420
+      value: -345
       objectReference: {fileID: 0}
     - target: {fileID: 8065158428297582868, guid: cc961d5a75f39e14eabdfb5f1435d53f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 205
+      value: 155
       objectReference: {fileID: 0}
     - target: {fileID: 8065158428297582868, guid: cc961d5a75f39e14eabdfb5f1435d53f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
