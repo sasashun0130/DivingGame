@@ -4947,6 +4947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerText
       objectReference: {fileID: 0}
+    - target: {fileID: 8065158428297582871, guid: cc961d5a75f39e14eabdfb5f1435d53f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc961d5a75f39e14eabdfb5f1435d53f, type: 3}
 --- !u!1001 &8205020563725830828

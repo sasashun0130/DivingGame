@@ -209,7 +209,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Not Find Treasure.
+  m_Text: Find Fake Treasure.
 --- !u!222 &174420892
 CanvasRenderer:
   m_ObjectHideFlags: 0
