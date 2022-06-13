@@ -13,6 +13,8 @@ TagManager:
   - PoisonEnemy
   - kaihuku
   - zanup
+  - Stair1
+  - FalseTresure
   layers:
   - Default
   - TransparentFX

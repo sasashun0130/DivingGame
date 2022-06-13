@@ -31,10 +31,6 @@ public class SceneChange: MonoBehaviour
         {
             SceneManager.LoadScene("3rdStage");
         }
-        else if (collision.gameObject.tag == "Stair2")
-        {
-            SceneManager.LoadScene("1stStage");
-        }
         else if (collision.gameObject.tag == "FalseStair")
         {
             int stage = Random.Range(1, 11);
