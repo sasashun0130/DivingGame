@@ -9,11 +9,14 @@ public class TitleManager : MonoBehaviour
     public float speed = 1.0f;
     public Text text;
     private float time;
+    public AudioClip buble;
+
+    private AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,6 +27,7 @@ public class TitleManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            audio.PlayOneShot(buble);
             SceneManager.LoadScene("1stStage");
         }
     }

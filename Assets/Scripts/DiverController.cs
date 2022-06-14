@@ -20,7 +20,7 @@ public class DiverController : MonoBehaviour
     public float attacktime = 1.0f;
     public bool isAttacking = false;
 
-    public float zanatu = 200.0f;
+    public static float zanatu = 100.0f;
     public Text ZanatuText;
 
     public Text PoisonText;
@@ -30,18 +30,23 @@ public class DiverController : MonoBehaviour
 
     public PostProcessVolume effect;
 
-    //public static int power = 1;
+    public AudioClip enemy;
+    public AudioClip poison;
+    public AudioClip recovery;
+    public AudioClip playeraudio;
+    private AudioSource mysource;
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
+        mysource = GetComponent<AudioSource>();
         isPoison = false;
         attack = false;
 
         effect.isGlobal = false;
-        //Debug.Log(effect.isGlobal);
+        //PlayerPrefs.GetFloat("zanatu", 100);
     }
 
     // Update is called once per frame
@@ -54,6 +59,9 @@ public class DiverController : MonoBehaviour
         myAnim.SetBool("attack",attack);
 
         ZanatuManager();
+
+        //PlayerPrefs.SetFloat("zanatu", zanatu);
+        //PlayerPrefs.Save();
 
     }
 
@@ -78,6 +86,7 @@ public class DiverController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space)){
             isAttacking = true;
+            zanatu -= 5;
             Instantiate(bubbles, gameObject.transform.position, gameObject.transform.rotation);
             speedMod = 1f;
             MovePlayer();
@@ -113,28 +122,31 @@ public class DiverController : MonoBehaviour
         {
             if (collision.gameObject.tag == "Enemy"){
                 zanatu -= 20;
+                mysource.PlayOneShot(playeraudio);
                 attack = true;
                 Invoke("Attack", 0.7f);
               
             }
             if (collision.gameObject.tag == "PoisonEnemy"){
                 zanatu -= 10;
+                mysource.PlayOneShot(poison);
                 isPoison = true;
                 attack = true;
                 effect.isGlobal = true;
-                //Debug.Log("感染エフェクト作動");
                 Invoke("Attack", 0.7f);
             }
             
         }
         else{
             Destroy(collision.gameObject);
-            Instantiate(death, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
+            mysource.PlayOneShot(enemy);
+            if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "PoisonEnemy")
+            {
+                Instantiate(death, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
+            }
         }
     }
 
-    //残圧を時間経過によって減少させていく
-    //残圧がゼロになったらゲームオーバー
     void ZanatuManager()
     {
         if (isPoison == false)
@@ -153,7 +165,6 @@ public class DiverController : MonoBehaviour
                 poisontimer = 0f;
                 isPoison = false;
                 effect.isGlobal = false;
-                Debug.Log("感染エフェクト終了");
                 PoisonText.gameObject.SetActive(false);
             }
         }
@@ -169,9 +180,11 @@ public class DiverController : MonoBehaviour
 
     void ZanUp(){
         zanatu += 20;
+        mysource.PlayOneShot(recovery);
     }
 
     void NotPoison(){
+        mysource.PlayOneShot(recovery);
         isPoison = false;
         effect.isGlobal = false;
         PoisonText.text = "毒から回復した！";
