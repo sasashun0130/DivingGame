@@ -24,7 +24,7 @@ public class DiverController : MonoBehaviour
     public Text ZanatuText;
 
     public Text PoisonText;
-    public bool isPoison;
+    public static bool isPoison;
     public float poisontimer = 0f;
     public float poisonlimit = 5f;
 
@@ -46,7 +46,7 @@ public class DiverController : MonoBehaviour
         attack = false;
 
         effect.isGlobal = false;
-        //PlayerPrefs.GetFloat("zanatu", 100);
+
     }
 
     // Update is called once per frame
@@ -59,9 +59,6 @@ public class DiverController : MonoBehaviour
         myAnim.SetBool("attack",attack);
 
         ZanatuManager();
-
-        //PlayerPrefs.SetFloat("zanatu", zanatu);
-        //PlayerPrefs.Save();
 
     }
 
@@ -185,10 +182,20 @@ public class DiverController : MonoBehaviour
 
     void NotPoison(){
         mysource.PlayOneShot(recovery);
-        isPoison = false;
-        effect.isGlobal = false;
-        PoisonText.text = "毒から回復した！";
-        Invoke("DeleteText", 1f);
+        if(isPoison == true)
+        {
+            isPoison = false;
+            effect.isGlobal = false;
+            PoisonText.text = "毒から回復した！";
+            PoisonText.gameObject.SetActive(true);
+            Invoke("DeleteText", 1f);
+        }
+        else
+        {
+            PoisonText.text = "残圧が10回復した！";
+            PoisonText.gameObject.SetActive(true);
+            Invoke("DeleteText", 1f);
+        }
     }
 
     void DeleteText()

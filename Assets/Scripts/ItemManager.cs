@@ -38,5 +38,4 @@ public class ItemManager : MonoBehaviour
     {
         ItemText.gameObject.SetActive(false);
     }
-
 }
