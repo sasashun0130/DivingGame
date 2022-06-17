@@ -20,7 +20,7 @@ public class DiverController : MonoBehaviour
     public float attacktime = 1.0f;
     public bool isAttacking = false;
 
-    public static float zanatu = 100.0f;
+    public static float zanatu = 180.0f;
     public Text ZanatuText;
 
     public Text PoisonText;
@@ -168,6 +168,7 @@ public class DiverController : MonoBehaviour
 
         if (zanatu < 0.0f){
             SceneManager.LoadScene("GameOverStage");
+            zanatu = 200.0f;
         }
     }
 
