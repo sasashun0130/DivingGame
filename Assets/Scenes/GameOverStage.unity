@@ -209,7 +209,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Find Fake Treasure.
+  m_Text: Not Find True Treasure.
 --- !u!222 &174420892
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -690,7 +690,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 8300000, guid: a228ac6fa2405394cb5d5c2039504de5, type: 3}
-  Audio: {fileID: 0}
 --- !u!4 &1832049308
 Transform:
   m_ObjectHideFlags: 0

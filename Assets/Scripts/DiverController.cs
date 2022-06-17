@@ -168,7 +168,7 @@ public class DiverController : MonoBehaviour
 
         if (zanatu < 0.0f){
             SceneManager.LoadScene("GameOverStage");
-            zanatu = 200.0f;
+            zanatu = 180.0f;
         }
     }
 
